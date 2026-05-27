@@ -9,28 +9,28 @@ export class AchievementsService {
       {
         name: 'First Steps',
         description: 'Complete your first quest successfully!',
-        badgeUrl: '/badges/first_quest.png',
+        badgeUrl: '🚀',
         xpRequired: 0,
         pointsRequired: 0,
       },
       {
         name: 'Quest Enthusiast',
         description: 'Successfully complete 5 quests.',
-        badgeUrl: '/badges/quest_enthusiast.png',
+        badgeUrl: '🔥',
         xpRequired: 0,
         pointsRequired: 0,
       },
       {
         name: 'Level 5 Elite',
         description: 'Reach Level 5 and prove your dedication.',
-        badgeUrl: '/badges/level_5.png',
+        badgeUrl: '👑',
         xpRequired: 4000, // level 5 is 4000+ XP in our formula
         pointsRequired: 0,
       },
       {
         name: 'Point Collector',
         description: 'Accumulate a total of 500 points.',
-        badgeUrl: '/badges/point_collector.png',
+        badgeUrl: '💎',
         xpRequired: 0,
         pointsRequired: 500,
       },
@@ -39,7 +39,12 @@ export class AchievementsService {
     for (const ach of defaultAchievements) {
       await prisma.achievement.upsert({
         where: { name: ach.name },
-        update: {},
+        update: {
+          badgeUrl: ach.badgeUrl,
+          description: ach.description,
+          xpRequired: ach.xpRequired,
+          pointsRequired: ach.pointsRequired,
+        },
         create: ach,
       });
     }

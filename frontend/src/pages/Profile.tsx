@@ -82,7 +82,7 @@ export const Profile: React.FC = () => {
     <div className="space-y-8">
       
       {/* Profile Header Box */}
-      <div className="rounded-2xl glass-panel bg-gradient-to-tr from-zinc-950 to-zinc-900 border border-zinc-800/40 p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div className="rounded-2xl glass-panel bg-gradient-to-tr from-card to-card/65 border border-border p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="flex flex-col md:flex-row items-center gap-6">
           {/* Large Avatar */}
           <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-violet-600 to-cyan-500 flex items-center justify-center text-white text-3xl font-extrabold uppercase shadow-xl shadow-violet-950/50">
@@ -104,12 +104,12 @@ export const Profile: React.FC = () => {
         </div>
 
         {/* XP and Level Bar */}
-        <div className="w-full md:w-80 space-y-2 bg-zinc-900/40 p-4 rounded-xl border border-zinc-900">
+        <div className="w-full md:w-80 space-y-2 bg-card/40 p-4 rounded-xl border border-border">
           <div className="flex justify-between items-center text-xs font-bold">
             <span className="text-slate-400">Level Progression</span>
             <span className="text-violet-400">{xpInCurrentLevel} / 1000 XP ({Math.round(xpPercent)}%)</span>
           </div>
-          <div className="h-2.5 w-full bg-zinc-800 rounded-full overflow-hidden">
+          <div className="h-2.5 w-full bg-muted rounded-full overflow-hidden">
             <div 
               className="h-full bg-gradient-to-r from-violet-500 to-cyan-400 rounded-full transition-all duration-500"
               style={{ width: `${xpPercent}%` }}
@@ -123,7 +123,7 @@ export const Profile: React.FC = () => {
         
         {/* Achievements Gallery (Left 2 cols) */}
         <div className="lg:col-span-2 space-y-6">
-          <div className="rounded-2xl glass-panel bg-gradient-to-tr from-zinc-950 to-zinc-900 border border-zinc-800/40 p-6 space-y-6">
+          <div className="rounded-2xl glass-panel bg-gradient-to-tr from-card to-card/65 border border-border p-6 space-y-6">
             <div className="flex justify-between items-center">
               <h3 className="text-sm font-bold text-white uppercase tracking-widest flex items-center space-x-2">
                 <Trophy size={16} className="text-yellow-500" />
@@ -141,8 +141,8 @@ export const Profile: React.FC = () => {
                   className={`
                     p-4 rounded-xl border flex items-center space-x-3 transition-all
                     ${ach.unlocked 
-                      ? 'bg-zinc-900/40 border-zinc-800/60' 
-                      : 'bg-zinc-950 border-zinc-900/40 opacity-40'
+                      ? 'bg-card/45 border-violet-500/35 glow-card' 
+                      : 'bg-card/10 border-border/40 opacity-40'
                     }
                   `}
                 >
@@ -150,7 +150,7 @@ export const Profile: React.FC = () => {
                     w-12 h-12 rounded-xl flex items-center justify-center text-xl font-bold shadow-md
                     ${ach.unlocked 
                       ? 'bg-violet-950/20 border border-violet-800/40 text-violet-400' 
-                      : 'bg-zinc-900 border border-zinc-850 text-slate-650'
+                      : 'bg-muted border border-border text-slate-600'
                     }
                   `}>
                     {ach.badgeUrl}
@@ -172,7 +172,7 @@ export const Profile: React.FC = () => {
 
         {/* Activity Timeline Log (Right 1 col) */}
         <div className="space-y-6">
-          <div className="rounded-2xl glass-panel bg-gradient-to-tr from-zinc-950 to-zinc-900 border border-zinc-800/40 p-6 space-y-6">
+          <div className="rounded-2xl glass-panel bg-gradient-to-tr from-card to-card/65 border border-border p-6 space-y-6">
             <h3 className="text-sm font-bold text-white uppercase tracking-widest flex items-center space-x-2">
               <Activity size={16} className="text-violet-500" />
               <span>Activity Log</span>
@@ -183,12 +183,12 @@ export const Profile: React.FC = () => {
                 No recent actions completed.
               </div>
             ) : (
-              <div className="relative border-l border-zinc-900 pl-4 space-y-6">
+              <div className="relative border-l border-border pl-4 space-y-6">
                 {timeline.map((act) => (
                   <div key={act.id} className="relative">
                     {/* Timeline Node */}
                     <div className={`
-                      absolute -left-[21px] top-0.5 w-2.5 h-2.5 rounded-full border-2 border-zinc-950
+                      absolute -left-[21px] top-0.5 w-2.5 h-2.5 rounded-full border-2 border-background
                       ${act.type === 'QUEST_COMPLETION' ? 'bg-emerald-500' : 'bg-violet-500'}
                     `} />
                     <div className="space-y-1">
