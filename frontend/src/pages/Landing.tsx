@@ -23,7 +23,7 @@ export const Landing: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-white relative overflow-hidden flex flex-col justify-between">
+    <div className="min-h-screen text-white relative overflow-hidden flex flex-col justify-between scanlines">
       {/* Decorative neon blobs */}
       <div className="absolute top-[-10%] left-[-10%] w-[60vw] h-[60vw] rounded-full bg-radial-glow opacity-30 pointer-events-none" />
       <div className="absolute bottom-[-10%] right-[-10%] w-[60vw] h-[60vw] rounded-full bg-radial-glow-cyan opacity-20 pointer-events-none" />
@@ -34,8 +34,8 @@ export const Landing: React.FC = () => {
           <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-violet-600 to-cyan-500 flex items-center justify-center font-bold text-white shadow-lg shadow-violet-900/40 text-lg">
             ⚔️
           </div>
-          <span className="font-extrabold text-xl tracking-wider">
-            QUEST<span className="text-violet-500">CRAFT</span>
+          <span className="font-display font-black text-xl tracking-wider">
+            QUEST<span className="text-violet-400 glow-text-primary">CRAFT</span>
           </span>
         </div>
         
@@ -60,9 +60,9 @@ export const Landing: React.FC = () => {
             <span>Inspired by Discord Quests</span>
           </motion.div>
 
-          <motion.h1 variants={itemVariants} className="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight">
+          <motion.h1 variants={itemVariants} className="font-display text-4xl md:text-6xl font-black tracking-tight leading-tight">
             Embark on Your <br />
-            <span className="bg-gradient-to-r from-violet-400 via-fuchsia-400 to-cyan-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-violet-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent">
               Epic Questing
             </span> <br />
             Adventure.
@@ -83,14 +83,14 @@ export const Landing: React.FC = () => {
             
             <Link
               to="/login"
-              className="px-8 py-4 rounded-xl border border-zinc-800 bg-zinc-900/20 hover:bg-zinc-900/40 text-slate-300 hover:text-white font-semibold text-base transition cursor-pointer"
+              className="px-8 py-4 rounded-xl border border-border bg-card/20 hover:bg-card/50 text-slate-300 hover:text-white font-semibold text-base transition cursor-pointer hover:border-violet-500/30"
             >
               Explore Quests
             </Link>
           </motion.div>
 
           {/* User statistics preview */}
-          <motion.div variants={itemVariants} className="grid grid-cols-3 gap-6 border-t border-zinc-900 pt-8 max-w-md">
+          <motion.div variants={itemVariants} className="grid grid-cols-3 gap-6 border-t border-border pt-8 max-w-md">
             <div>
               <p className="text-2xl font-bold text-white">100%</p>
               <p className="text-xs text-slate-500 font-semibold uppercase mt-0.5">Real-Time Sync</p>
@@ -114,7 +114,7 @@ export const Landing: React.FC = () => {
           className="relative flex justify-center items-center"
         >
           {/* Main card */}
-          <div className="w-full max-w-md p-6 rounded-2xl glass-panel glow-border-primary glow-card bg-gradient-to-tr from-zinc-950 to-zinc-900 relative z-20">
+          <div className="w-full max-w-md p-6 rounded-2xl glass-panel glow-border-primary glow-card bg-gradient-to-tr from-card to-card/65 relative z-20">
             <div className="flex justify-between items-start">
               <div className="bg-cyan-950/40 border border-cyan-800/30 text-cyan-400 text-[10px] font-bold tracking-widest px-2 py-0.5 rounded-full uppercase">
                 Active Quest
@@ -136,13 +136,13 @@ export const Landing: React.FC = () => {
                 <span className="text-slate-400">Match Completion Progress</span>
                 <span className="text-cyan-400">3 / 5 completed</span>
               </div>
-              <div className="h-2 w-full bg-zinc-800 rounded-full overflow-hidden">
+              <div className="h-2 w-full bg-muted rounded-full overflow-hidden">
                 <div className="h-full bg-gradient-to-r from-violet-600 to-cyan-400 rounded-full w-[60%]" />
               </div>
             </div>
 
             {/* Rewards info */}
-            <div className="mt-6 flex justify-between items-center pt-4 border-t border-zinc-900">
+            <div className="mt-6 flex justify-between items-center pt-4 border-t border-border">
               <div className="flex space-x-4">
                 <div>
                   <p className="text-[10px] text-slate-500 font-bold uppercase">XP Reward</p>
@@ -153,7 +153,7 @@ export const Landing: React.FC = () => {
                   <p className="text-sm font-bold text-cyan-400">200 pts</p>
                 </div>
               </div>
-              <div className="flex items-center space-x-1.5 bg-zinc-900 border border-zinc-800 py-1 px-2.5 rounded-lg text-xs font-bold text-yellow-500">
+              <div className="flex items-center space-x-1.5 bg-card border border-border py-1 px-2.5 rounded-lg text-xs font-bold text-yellow-500">
                 <Award size={14} />
                 <span>Champion Badge</span>
               </div>
@@ -161,15 +161,15 @@ export const Landing: React.FC = () => {
           </div>
 
           {/* Underlay Cards */}
-          <div className="absolute w-[90%] max-w-[380px] p-6 rounded-2xl glass-panel bg-zinc-900 border border-zinc-850 opacity-40 top-8 z-10 translate-y-2 translate-x-4 scale-95 pointer-events-none" />
-          <div className="absolute w-[80%] max-w-[340px] p-6 rounded-2xl glass-panel bg-zinc-900 border border-zinc-900 opacity-20 top-16 z-0 translate-y-4 translate-x-8 scale-90 pointer-events-none" />
+          <div className="absolute w-[90%] max-w-[380px] p-6 rounded-2xl glass-panel bg-card border border-border opacity-40 top-8 z-10 translate-y-2 translate-x-4 scale-95 pointer-events-none" />
+          <div className="absolute w-[80%] max-w-[340px] p-6 rounded-2xl glass-panel bg-card border border-border opacity-20 top-16 z-0 translate-y-4 translate-x-8 scale-90 pointer-events-none" />
         </motion.div>
       </main>
 
       {/* Feature Grid */}
-      <section className="bg-zinc-950 border-t border-zinc-900 relative z-10 py-16 px-6">
+      <section className="bg-background/80 backdrop-blur-md border-t border-border relative z-10 py-16 px-6">
         <div className="max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div className="p-6 rounded-2xl bg-zinc-900/30 border border-zinc-900 hover:border-zinc-800 transition">
+          <div className="p-6 rounded-2xl bg-card/20 border border-border hover:border-violet-500/30 transition glow-card">
             <div className="w-10 h-10 rounded-xl bg-violet-600/10 border border-violet-500/20 flex items-center justify-center text-violet-400 mb-4">
               <Compass size={20} />
             </div>
@@ -179,7 +179,7 @@ export const Landing: React.FC = () => {
             </p>
           </div>
 
-          <div className="p-6 rounded-2xl bg-zinc-900/30 border border-zinc-900 hover:border-zinc-800 transition">
+          <div className="p-6 rounded-2xl bg-card/20 border border-border hover:border-violet-500/30 transition glow-card">
             <div className="w-10 h-10 rounded-xl bg-cyan-600/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 mb-4">
               <Zap size={20} />
             </div>
@@ -189,7 +189,7 @@ export const Landing: React.FC = () => {
             </p>
           </div>
 
-          <div className="p-6 rounded-2xl bg-zinc-900/30 border border-zinc-900 hover:border-zinc-800 transition">
+          <div className="p-6 rounded-2xl bg-card/20 border border-border hover:border-violet-500/30 transition glow-card">
             <div className="w-10 h-10 rounded-xl bg-pink-600/10 border border-pink-500/20 flex items-center justify-center text-pink-400 mb-4">
               <Award size={20} />
             </div>
@@ -199,7 +199,7 @@ export const Landing: React.FC = () => {
             </p>
           </div>
 
-          <div className="p-6 rounded-2xl bg-zinc-900/30 border border-zinc-900 hover:border-zinc-800 transition">
+          <div className="p-6 rounded-2xl bg-card/20 border border-border hover:border-violet-500/30 transition glow-card">
             <div className="w-10 h-10 rounded-xl bg-amber-600/10 border border-amber-500/20 flex items-center justify-center text-amber-400 mb-4">
               <Trophy size={20} />
             </div>
@@ -212,7 +212,7 @@ export const Landing: React.FC = () => {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-zinc-900 bg-zinc-950/60 py-6 text-center text-xs text-slate-600 relative z-10 px-6">
+      <footer className="border-t border-border bg-card/60 py-6 text-center text-xs text-slate-600 relative z-10 px-6">
         <div className="max-w-7xl mx-auto w-full flex flex-col sm:flex-row justify-between items-center gap-4">
           <p>© {new Date().getFullYear()} QuestCraft. All rights reserved.</p>
           <div className="flex space-x-6">
