@@ -1,0 +1,108 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id           String            @id @default(uuid())
+  username     String            @unique
+  email        String            @unique
+  passwordHash String
+  role         String            @default("USER") // "USER" | "ADMIN"
+  xp           Int               @default(0)
+  points       Int               @default(0)
+  level        Int               @default(1)
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+  sessions     Session[]
+  submissions  Submission[]
+  achievements UserAchievement[]
+  rewards      Reward[]
+  notifications Notification[]
+}
+
+model Session {
+  id           String   @id @default(uuid())
+  userId       String
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  refreshToken String   @unique
+  expiresAt    DateTime
+  createdAt    DateTime @default(now())
+}
+
+model Quest {
+  id          String       @id @default(uuid())
+  title       String
+  description String
+  type        String       // "DAILY" | "WEEKLY" | "ACHIEVEMENT"
+  targetValue Int          @default(1)
+  rewardXp    Int          @default(100)
+  rewardPoints Int         @default(50)
+  rewardBadge String?
+  status      String       @default("DRAFT") // "DRAFT" | "PUBLISHED" | "EXPIRED"
+  expiresAt   DateTime?
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  submissions Submission[]
+}
+
+model Submission {
+  id          String   @id @default(uuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  questId     String
+  quest       Quest    @relation(fields: [questId], references: [id], onDelete: Cascade)
+  status      String   @default("PENDING") // "PENDING" | "APPROVED" | "REJECTED"
+  proofUrl    String?
+  proofText   String?
+  adminNotes  String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Achievement {
+  id             String            @id @default(uuid())
+  name           String            @unique
+  description    String
+  badgeUrl       String
+  xpRequired     Int               @default(0)
+  pointsRequired Int               @default(0)
+  createdAt      DateTime          @default(now())
+  users          UserAchievement[]
+}
+
+model UserAchievement {
+  id            String      @id @default(uuid())
+  userId        String
+  user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  achievementId String
+  achievement   Achievement @relation(fields: [achievementId], references: [id], onDelete: Cascade)
+  unlockedAt    DateTime    @default(now())
+
+  @@unique([userId, achievementId])
+}
+
+model Reward {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type      String   // "XP" | "POINTS" | "BADGE"
+  amount    Int      @default(0)
+  source    String   // "QUEST" | "ACHIEVEMENT"
+  sourceId  String
+  createdAt DateTime @default(now())
+}
+
+model Notification {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  message   String
+  type      String   // "QUEST_COMPLETED" | "REWARD_EARNED" | "LEADERBOARD_CHANGE" | "ADMIN_ANNOUNCEMENT"
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
